@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    fieldset {
+      margin: 20px;
+      font-size: 40px;
+      font-weight: bold;
+    }
+    legend {
+      font-size: 20px;
+      font-weight: bold;
+      outline: 5px solid #00000094;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    button {
+      width: 120px;
+      height: 40px;
+      font-size: 25px;
+    }
+    input[type="text"] {
+      width: 200px;
+      height: 40px;
+      font-size: 25px;
+      box-sizing: border-box;
+    }
+    body {
+      font-family:
+        Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif, Arial,
+        Helvetica, sans-serif;
+      background-image: url("https://storage.ghost.io/c/3d/ea/3dea66f2-9737-42a1-a346-5a06228649cc/content/images/size/w2000/2023/08/main-3.jpeg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: white;
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 30vh;
+    }
+  </style>
+  <body>
+    <fieldset>
+      <legend>String Handling</legend>
+      <label for="inputString">Enter a string:</label>
+      <input type="text" id="inputString" placeholder="Enter a string..." />
+      <button onclick="buttonfunction()">Enter</button>
+      <p id="letterCount"></p>
+      <p id="vowelCount"></p>
+      <p id="palindromeCheck"></p>
+    </fieldset>
+    <script>
+      function numberofLletters(str) {
+        let count = 0;
+        for (let i = 0; i < str.length; i++) {
+          if (str[i].match(/[Ll]/)) {
+            count++;
+          }
+        }
+        return count;
+      }
+      function numberofVowels(str) {
+        let count = 0;
+        for (let i = 0; i < str.length; i++) {
+          if (str[i].match(/[aeiouAEIOU]/)) {
+            count++;
+          }
+        }
+        return count;
+      }
+      function Palindrome(str) {
+        let normalStr = str.toLowerCase();
+        let reversedStr = normalStr.split("").reverse().join("");
+        return normalStr === reversedStr;
+      }
+      function buttonfunction() {
+        let inputString = document.getElementById("inputString").value;
+        if (inputString.trim() === "") {
+          document.getElementById("letterCount").innerText =
+            "Please enter a string.";
+          return;
+        }
+        let letterCount = numberofLletters(inputString);
+        let vowelCount = numberofVowels(inputString);
+        let isPalindrome = Palindrome(inputString);
+        document.getElementById("letterCount").innerText =
+          inputString + " contains " + letterCount + "xL characters.";
+        document.getElementById("vowelCount").innerText =
+          inputString + " contains " + vowelCount + " vowels.";
+        document.getElementById("palindromeCheck").innerText =
+          inputString + " is " + (isPalindrome ? "" : "NOT ") + "a palindrome.";
+      }
+    </script>
+  </body>
+</html>
